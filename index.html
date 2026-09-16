@@ -92,6 +92,10 @@
       transition:.2s;
     }
     .nav-links a:hover{color:var(--accent)}
+    .nav-connect{
+      color:var(--accent) !important;
+      font-weight:700;
+    }
     .nav-cta{
       padding:12px 20px;
       border-radius:100px;
@@ -651,12 +655,28 @@
       z-index:5;
     }
     .reel-meta{
-      display:flex;justify-content:space-between;gap:10px;
+      display:grid;
+      grid-template-columns:32px minmax(0,1fr);
+      align-items:center;
+      gap:10px;
       padding:14px 2px 0;
       font-size:14px;
+      text-align:left;
+    }
+    .reel-meta span{
+      color:var(--accent);
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      text-align:left;
+    }
+    .reel-meta strong{
+      font-family:"Manrope",sans-serif;
+      letter-spacing:-.02em;
+      text-align:left;
+      display:block;
     }
     .reel-meta span, .long-copy>span{color:var(--accent);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-    .reel-meta strong{font-family:"Manrope",sans-serif;letter-spacing:-.02em}
 
     .long-grid{
       margin-top:55px;
@@ -940,6 +960,158 @@
     .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
     .reveal.visible{opacity:1;transform:none}
 
+
+    /* DIRECT CHAT WIDGET */
+    .chat-fab{
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      z-index:9500;
+      width:62px;
+      height:62px;
+      border:1px solid rgba(216,255,95,.8);
+      border-radius:50%;
+      background:var(--accent);
+      color:#0a0c08;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      box-shadow:0 12px 35px rgba(0,0,0,.45),0 0 28px rgba(216,255,95,.22);
+      transition:transform .3s ease,box-shadow .3s ease;
+      font-size:24px;
+    }
+    .chat-fab:hover{
+      transform:translateY(-4px) scale(1.06);
+      box-shadow:0 16px 40px rgba(0,0,0,.55),0 0 35px rgba(216,255,95,.4);
+    }
+    .chat-fab .chat-dot{
+      position:absolute;
+      top:4px;
+      right:4px;
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      background:#35d07f;
+      border:2px solid var(--accent);
+      box-shadow:0 0 12px rgba(53,208,127,.7);
+    }
+    .chat-panel{
+      position:fixed;
+      right:24px;
+      bottom:98px;
+      z-index:9501;
+      width:min(360px,calc(100vw - 32px));
+      padding:22px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      background:rgba(17,19,23,.96);
+      backdrop-filter:blur(20px);
+      box-shadow:0 25px 70px rgba(0,0,0,.55);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(15px) scale(.97);
+      transition:.3s cubic-bezier(.2,.8,.2,1);
+    }
+    .chat-panel.open{
+      opacity:1;
+      visibility:visible;
+      transform:none;
+    }
+    .chat-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+      margin-bottom:17px;
+    }
+    .chat-head h3{
+      font-family:"Manrope",sans-serif;
+      font-size:19px;
+      letter-spacing:-.03em;
+    }
+    .chat-head p{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:3px;
+    }
+    .chat-status{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      color:#b9bec5;
+      font-size:11px;
+      white-space:nowrap;
+    }
+    .chat-status i{
+      width:7px;height:7px;border-radius:50%;
+      background:#35d07f;
+      box-shadow:0 0 10px rgba(53,208,127,.7);
+    }
+    .chat-close{
+      border:0;
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      width:32px;height:32px;
+      border-radius:50%;
+      cursor:pointer;
+    }
+    .chat-message{
+      width:100%;
+      min-height:105px;
+      resize:vertical;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:#0d0f12;
+      color:#f5f5f0;
+      padding:13px;
+      outline:none;
+      font:13px "DM Sans",sans-serif;
+    }
+    .chat-message:focus{
+      border-color:rgba(216,255,95,.55);
+      box-shadow:0 0 0 3px rgba(216,255,95,.06);
+    }
+    .chat-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    .chat-action{
+      min-height:45px;
+      border-radius:100px;
+      border:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .chat-action.email{
+      background:var(--accent);
+      color:#0a0c08;
+      border-color:var(--accent);
+    }
+    .chat-action.email:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(216,255,95,.22)}
+    .chat-action.whatsapp{
+      background:rgba(255,255,255,.04);
+      color:#f5f5f0;
+    }
+    .chat-action.whatsapp:hover{
+      border-color:rgba(53,208,127,.6);
+      color:#6ee7a5;
+      transform:translateY(-2px);
+    }
+    .chat-note{
+      margin-top:12px;
+      color:#70767e;
+      font-size:10px;
+      line-height:1.5;
+    }
+
     /* RESPONSIVE MEDIA QUERIES */
     @media(max-width:1050px){
       .landing-inner{grid-template-columns:1fr;gap:45px}
@@ -963,6 +1135,7 @@
       .nav-links.open{display:flex}
       .nav-links a{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
       .nav-links a:last-child{border-bottom:0}
+      .nav-connect{color:var(--accent) !important}
       .menu-btn{display:block}
       .nav-cta{margin-top:10px;text-align:center}
 
@@ -1011,7 +1184,117 @@
       .footer-inner{display:block;text-align:center}
       .footer-links{justify-content:center;margin-top:15px}
     }
-  </style>
+  
+/* Pricing Section */
+.pricing-section{
+  padding:clamp(80px,10vw,140px) 0;
+  position:relative;
+}
+.pricing-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  margin-bottom:48px;
+}
+.pricing-head .eyebrow{margin-bottom:14px}
+.pricing-head p{
+  max-width:520px;
+  margin:0;
+  color:var(--muted);
+}
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.price-card{
+  position:relative;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.035);
+  border-radius:24px;
+  padding:32px;
+  min-height:430px;
+  display:flex;
+  flex-direction:column;
+  transition:transform .3s ease,border-color .3s ease,background .3s ease;
+}
+.price-card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(216,255,95,.5);
+  background:rgba(255,255,255,.055);
+}
+.price-card.featured{
+  border-color:var(--accent);
+  box-shadow:0 0 0 1px rgba(216,255,95,.18),0 24px 70px rgba(0,0,0,.2);
+}
+.price-badge{
+  position:absolute;
+  top:20px;
+  right:20px;
+  padding:7px 11px;
+  border-radius:999px;
+  background:var(--accent);
+  color:#101010;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+.price-number{
+  font-size:clamp(42px,5vw,64px);
+  line-height:1;
+  font-weight:800;
+  letter-spacing:-.05em;
+  margin:24px 0 12px;
+}
+.price-number span{
+  font-size:18px;
+  font-weight:500;
+  letter-spacing:0;
+  color:var(--muted);
+}
+.price-card h3{
+  font-size:18px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin:0;
+}
+.price-card .price-desc{
+  color:var(--muted);
+  margin:0 0 24px;
+  min-height:48px;
+}
+.price-features{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:12px;
+}
+.price-features li{
+  position:relative;
+  padding-left:23px;
+  color:rgba(255,255,255,.86);
+  font-size:14px;
+}
+.price-features li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  color:var(--accent);
+  font-weight:800;
+}
+.price-card .price-cta{
+  margin-top:auto;
+  padding-top:28px;
+}
+@media(max-width:900px){
+  .pricing-grid{grid-template-columns:1fr}
+  .price-card{min-height:auto}
+  .pricing-head{display:block}
+  .pricing-head p{margin-top:15px}
+}
+</style>
 </head>
 
 <body>
@@ -1021,7 +1304,7 @@
     <div class="loader-inner">
       <div class="loader-mark">PLOTPOINT<span>VISUALS</span></div>
       <div class="loader-track"><span></span></div>
-      <div class="loader-status">Loading experience <b id="loaderPercent">0%</b></div>
+      <div class="loader-status">Loading studio <b id="loaderPercent">0%</b></div>
     </div>
   </div>
 
@@ -1034,8 +1317,11 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#showreel">Portfolio</a>
+        <a href="#work">Services</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#brands">Clients</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#brands" class="nav-connect">Connect Me</a>
         <a href="#contact" class="nav-cta">Start a Project</a>
       </nav>
 
@@ -1062,9 +1348,9 @@
         <!-- LEFT SIDE COPY UPDATED & SPACED PROPERLY -->
         <div class="landing-copy reveal">
           <div class="eyebrow">Real Estate Video Studio</div>
-          <h1>Crafting visuals that <span>sell the story.</span></h1>
+          <h1>Show the property. <span>Show the location.</span> Show the potential.</h1>
           <p>
-            High-end property video editing, 3D map animations, drone visuals, and high-converting reels designed to capture buyer attention.
+            Real estate video editing, property map animation, drone visuals, and short-form content built to show the property, the location, and the potential.
           </p>
 
           <div class="landing-actions">
@@ -1117,7 +1403,7 @@
             <div class="eyebrow">Showreel</div>
             <h2>Start with the<br>work that moves.</h2>
           </div>
-          <p>A cinematic introduction to our real estate editing, map animation and visual storytelling.</p>
+          <p>A focused selection of real estate edits, map animations, drone visuals and property storytelling.</p>
         </div>
 
         <div class="video-frame reveal" data-aspect="horizontal" data-title="Main Showreel 2026">
@@ -1269,15 +1555,15 @@
             </div>
             <div class="service">
               <strong>02 — Property Video</strong>
-              <small>Listing & cinematic edits</small>
+              <small>Listing edits, cinematic property films and social cuts</small>
             </div>
             <div class="service">
               <strong>03 — Drone Editing</strong>
-              <small>Aerial footage & transitions</small>
+              <small>Aerial footage, pacing and transitions</small>
             </div>
             <div class="service">
               <strong>04 — Social Content</strong>
-              <small>Reels, Shorts & vertical ads</small>
+              <small>Reels, Shorts and vertical property campaigns</small>
             </div>
           </div>
         </div>
@@ -1292,51 +1578,113 @@
             <div class="eyebrow">The Studio</div>
             <h2>Built around<br>real estate.</h2>
           </div>
-          <p>From a property's exact location to its final social cut, every visual is designed to make the story clearer.</p>
+          <p>From the exact property location to the final social cut, every visual is designed to make the story clearer and the listing more compelling.</p>
         </div>
 
         <div class="capability-grid">
-          <div class="capability reveal"><span>01</span><strong>Map Animation</strong><p>Routes, proximity, neighborhoods and location storytelling.</p></div>
+          <div class="capability reveal"><span>01</span><strong>Map Animation</strong><p>Routes, proximity, landmarks, amenities and location storytelling.</p></div>
           <div class="capability reveal"><span>02</span><strong>Listing Films</strong><p>Clean, cinematic edits for premium property listings.</p></div>
           <div class="capability reveal"><span>03</span><strong>Drone Editing</strong><p>Aerial pacing, transitions and development overviews.</p></div>
-          <div class="capability reveal"><span>04</span><strong>Social Reels</strong><p>Vertical-first edits designed for Instagram and short-form campaigns.</p></div>
+          <div class="capability reveal"><span>04</span><strong>AI Property Visuals</strong><p>Development concepts, before-and-after visuals and short property walkthroughs.</p></div>
         </div>
       </div>
     </section>
 
     <!-- TESTIMONIALS -->
-    <section id="testimonials">
+    
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="pricing-head">
+      <div>
+        <div class="eyebrow">PRICING</div>
+        <h2>Simple packages.<br>Built for real estate.</h2>
+      </div>
+      <p>Choose a package that fits your content needs. Every project is edited with a clean real estate focused style.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <article class="price-card">
+        <h3>01 — REEL STARTER</h3>
+        <div class="price-number">$240</div>
+        <p class="price-desc">4 premium real estate reels</p>
+        <ul class="price-features">
+          <li>4 real estate reels</li>
+          <li>Vertical social-ready format</li>
+          <li>Professional editing</li>
+          <li>Real estate focused motion graphics</li>
+        </ul>
+        <div class="price-cta">
+          <a class="btn" href="mailto:hello@plotpointvisuals.com?subject=Reel%20Starter%20Package">Start a Project <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="price-card featured">
+        <div class="price-badge">POPULAR</div>
+        <h3>02 — PROPERTY STORY</h3>
+        <div class="price-number">$350</div>
+        <p class="price-desc">Up to 5 minutes property video + custom map animation + 2 reels</p>
+        <ul class="price-features">
+          <li>Up to 5 minutes property video</li>
+          <li>Custom map animation</li>
+          <li>2 real estate reels</li>
+          <li>Professional editing and motion graphics</li>
+        </ul>
+        <div class="price-cta">
+          <a class="btn" href="mailto:hello@plotpointvisuals.com?subject=Property%20Story%20Package">Start a Project <span class="arrow">↗</span></a>
+        </div>
+      </article>
+
+      <article class="price-card">
+        <h3>03 — FULL CONTENT PACKAGE</h3>
+        <div class="price-number">$600</div>
+        <p class="price-desc">6 reels + 2 property videos</p>
+        <ul class="price-features">
+          <li>6 real estate reels</li>
+          <li>2 property videos</li>
+          <li>Professional editing</li>
+          <li>Real estate focused motion graphics</li>
+        </ul>
+        <div class="price-cta">
+          <a class="btn" href="mailto:hello@plotpointvisuals.com?subject=Full%20Content%20Package">Start a Project <span class="arrow">↗</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
       <div class="container">
         <div class="section-head reveal">
           <div>
             <div class="eyebrow">Client Feedback</div>
             <h2>Trusted by people<br>who sell property.</h2>
           </div>
-          <p>Replace the sample testimonials below with real client feedback from Fiverr, Upwork or direct clients.</p>
+          <p>Selected client feedback from real estate projects.</p>
         </div>
 
         <div class="testimonial-grid">
           <article class="testimonial reveal">
-            <div class="quote">“The map animation made the location instantly understandable. It looked premium and professional.”</div>
+            <div class="quote">“The map animation made the location instantly understandable. The final video looked premium and professional.”</div>
             <div class="client">
-              <div class="avatar">JD</div>
-              <div><strong>John Doe</strong><small>Real Estate Agent</small></div>
+              <div class="avatar">RC</div>
+              <div><strong>Real Estate Client</strong><small>Real Estate Agent</small></div>
             </div>
           </article>
 
           <article class="testimonial reveal">
-            <div class="quote">“Fast communication, clean editing and a much stronger final video than we expected.”</div>
+            <div class="quote">“Clean editing, strong communication and a final video that was much stronger than we expected.”</div>
             <div class="client">
-              <div class="avatar">SM</div>
-              <div><strong>Sarah Miller</strong><small>Property Marketing</small></div>
+              <div class="avatar">PM</div>
+              <div><strong>Property Marketing Client</strong><small>Property Marketing</small></div>
             </div>
           </article>
 
           <article class="testimonial reveal">
-            <div class="quote">“The visuals helped us tell the story of the development instead of just showing another listing.”</div>
+            <div class="quote">“The visuals helped us explain the development instead of simply showing another listing.”</div>
             <div class="client">
-              <div class="avatar">AR</div>
-              <div><strong>Alex Roberts</strong><small>Property Developer</small></div>
+              <div class="avatar">PD</div>
+              <div><strong>Property Developer Client</strong><small>Property Developer</small></div>
             </div>
           </article>
         </div>
@@ -1354,11 +1702,11 @@
         </div>
 
         <div class="brand-row">
-          <div class="brand">BRAND ONE</div>
-          <div class="brand">NORTH & CO.</div>
-          <div class="brand">URBAN HOUSE</div>
-          <div class="brand">PROPERTY GROUP</div>
-          <div class="brand">BRAND FIVE</div>
+          <div class="brand">REAL ESTATE</div>
+          <div class="brand">PROPERTY MEDIA</div>
+          <div class="brand">DEVELOPMENT</div>
+          <div class="brand">LISTING MEDIA</div>
+          <div class="brand">DIRECT CLIENTS</div>
         </div>
 
         <div class="social-heading">
@@ -1395,7 +1743,7 @@
             </p>
           </div>
 
-          <a class="btn new-project-cta" href="mailto:hello@plotpointvisuals.com">Start a Project <span class="arrow">↗</span></a>
+          <a class="btn new-project-cta" href="mailto:hello@plotpointvisuals.com?subject=New%20Real%20Estate%20Video%20Project">Start a Project <span class="arrow">↗</span></a>
         </div>
       </div>
     </section>
@@ -1625,15 +1973,104 @@
 
     // Social Links Setup
     const SOCIAL_URLS = {
-      instagram: "https://www.instagram.com/mapmotionary_official/",
-      fiverr: "https://www.fiverr.com/",
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/"
+      instagram: "https://www.instagram.com/rifatvisual/",
+      fiverr: "https://www.fiverr.com/ruman_watson",
+      linkedin: "https://www.linkedin.com/in/mahfuzzaman-rifat-500695380/",
+      x: "https://x.com/rifatedits"
     };
 
     document.querySelectorAll('[data-social]').forEach(link => {
       const key = link.dataset.social;
       if (SOCIAL_URLS[key]) link.href = SOCIAL_URLS[key];
+    });
+
+  </script>
+
+  <!-- DIRECT CLIENT CHAT -->
+  <button class="chat-fab" id="chatFab" aria-label="Chat with PlotPoint Visuals">
+    <span>✦</span><i class="chat-dot"></i>
+  </button>
+
+  <div class="chat-panel" id="chatPanel" aria-hidden="true">
+    <div class="chat-head">
+      <div>
+        <h3>Chat with PlotPoint Visuals</h3>
+        <p>Tell me about your property project.</p>
+      </div>
+      <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+    </div>
+
+    <div class="chat-status"><i></i> Available for new projects</div>
+
+    <textarea class="chat-message" id="chatMessage"
+      placeholder="Hi, I need a real estate video for..."></textarea>
+
+    <div class="chat-actions">
+      <button class="chat-action email" id="chatEmail">Email Me ↗</button>
+      <button class="chat-action whatsapp" id="chatWhatsApp">WhatsApp ↗</button>
+    </div>
+
+    <div class="chat-note">
+      Email opens your mail app with your message ready to send.
+      WhatsApp opens a direct chat with PlotPoint Visuals.
+    </div>
+  </div>
+
+  <script>
+    // DIRECT CONTACT SETTINGS
+    const CONTACT_EMAIL = "hello@plotpointvisuals.com";
+
+    // Add your WhatsApp number here in international format, without + or spaces.
+    // Example: "8801XXXXXXXXX"
+    const WHATSAPP_NUMBER = "8801905938074";
+
+    const chatFab = document.getElementById("chatFab");
+    const chatPanel = document.getElementById("chatPanel");
+    const chatClose = document.getElementById("chatClose");
+    const chatMessage = document.getElementById("chatMessage");
+    const chatEmail = document.getElementById("chatEmail");
+    const chatWhatsApp = document.getElementById("chatWhatsApp");
+
+    function toggleChat(force) {
+      const shouldOpen = typeof force === "boolean"
+        ? force
+        : !chatPanel.classList.contains("open");
+
+      chatPanel.classList.toggle("open", shouldOpen);
+      chatPanel.setAttribute("aria-hidden", String(!shouldOpen));
+
+      if (shouldOpen) setTimeout(() => chatMessage.focus(), 150);
+    }
+
+    chatFab.addEventListener("click", () => toggleChat());
+    chatClose.addEventListener("click", () => toggleChat(false));
+
+    chatEmail.addEventListener("click", () => {
+      const message = chatMessage.value.trim() ||
+        "Hi PlotPoint Visuals, I would like to discuss a real estate video project.";
+      const subject = "New Real Estate Video Project";
+      window.location.href =
+        "mailto:" + CONTACT_EMAIL +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(message);
+    });
+
+    chatWhatsApp.addEventListener("click", () => {
+      const message = chatMessage.value.trim() ||
+        "Hi, I would like to discuss a real estate video project.";
+      if (!WHATSAPP_NUMBER) {
+        alert("Please add your WhatsApp business number in WHATSAPP_NUMBER in the website code first.");
+        return;
+      }
+      window.open(
+        "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message),
+        "_blank",
+        "noopener"
+      );
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") toggleChat(false);
     });
   </script>
 </body>
